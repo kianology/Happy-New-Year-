@@ -70,8 +70,12 @@
         height: 140px;
         border-radius: 50%;
         border: 5px solid #ffd1e1;
-        object-fit: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 60px;
         margin-bottom: 15px;
+        background: #fff5f9;
     }
 
     .postcard {
@@ -96,6 +100,18 @@
         font-size: 12px;
         opacity: 0.6;
     }
+
+    button {
+        padding:10px 18px;
+        border-radius:22px;
+        border:none;
+        background:#ffd1e1;
+        color:#555;
+        cursor:pointer;
+        font-size:14px;
+        box-shadow:0 6px 12px rgba(0,0,0,0.1);
+        margin-top: 18px;
+    }
 </style>
 </head>
 <body>
@@ -111,90 +127,76 @@
     <input type="text" id="nameInput" placeholder="Enter your name..." oninput="searchName()">
 
     <div class="card" id="card">
-        <img id="photo" class="photo" src="" alt="Photo">
+        <div id="photo" class="photo"></div>
         <div class="postcard">
             <h2 id="personName"></h2>
             <p id="message"></p>
         </div>
     </div>
 
-    <div style="margin-top:18px;">
-    <button onclick="toggleMusic()" style="
-        padding:10px 18px;
-        border-radius:22px;
-        border:none;
-        background:#ffd1e1;
-        color:#555;
-        cursor:pointer;
-        font-size:14px;
-        box-shadow:0 6px 12px rgba(0,0,0,0.1);
-    ">
-        🎵 Play / Pause Music
-    </button>
-</div>
+    <button onclick="toggleMusic()">🎵 Play / Pause Music</button>
 
-<audio id="bgm" loop>
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
+    <audio id="bgm" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
 
     <footer>Made with warmth and gentle thoughts, Daamir Khale 🌸</footer>
 </div>
 
 <script>
 const data = {
-    "Wyfin Loen": "emoji: "⭐"",
-    "Kito Orin": "emoji: "⭐"",
-    "Kyaan Mar": "emoji: "⭐"",
-    "Rowan Shourei": "emoji: "⭐"",
-    "Izan Torres": "emoji: "⭐"",
-    "Kaleo Heirs": "emoji: "⭐"",
-    "Riley Allise": "emoji: "⭐"",
-    "Sakura Blossom": "emoji: "⭐"",
-    "Kaeru Moe": "emoji: "⭐"",
-    "Vivien Lilah": "emoji: "⭐"",
-    "Hagia Latesha": "pemoji: "⭐"",
-    "Cecily Lou": "emoji: "⭐"",
-    "Nuuha Tan": "emoji: "⭐"",
-    "Ishara Kye": "emoji: "⭐"g",
-    "Cajon Kaz": "emoji: "⭐"",
-    "Noam Frage": "emoji: "⭐"",
-    "Gracheon Rainey": "emoji: "⭐"",
-    "Cathia Eve": "emoji: "⭐"",
-    "Elegi Esok": "emoji: "⭐"",
-    "Kasai Rauf": "emoji: "⭐"",
-    "San Helios": "emoji: "⭐"",
-    "Milan Agape": "emoji: "⭐"",
-    "Laudre Sienta": "emoji: "⭐"",
-    "Ame Faire": "emoji: "⭐"",
-    "Ruis Fjoer": "emoji: "⭐"",
-    "Eleven Gray": "emoji: "⭐"",
-    "Rin Isse": "emoji: "⭐"",
-    "Eurla Tisfa": "emoji: "⭐"",
-    "Mikael Fortner": "emoji: "⭐"",
-    "Gabriel Benjamin": "emoji: "⭐"",
-    "Meir Joe": "emoji: "⭐"",
-    "Monte Idriz": "emoji: "⭐"",
-    "Kyle Yuino": "emoji: "⭐"",
-    "Kato Ren": "emoji: "⭐"",
-    "Calde Hills": "emoji: "⭐"",
-    "Arion Smith": "emoji: "⭐"",
-    "Erika Fashreen": "emoji: "⭐"",
-    "Sabine Isle": "emoji: "⭐"",
-    "Thishar": "emoji: "⭐"",
-    "Mila Vesna": "emoji: "⭐"",
-    "J'eis Luc": "emoji: "⭐"",
-    "Amara Khiar": "emoji: "⭐"",
-    "Misty Jade": "emoji: "⭐"",
-    "Cinta Rianna": "emoji: "⭐"",
-    "Cassa Tanevi": "emoji: "⭐"g",
-    "Kais Sinclair": "photos/kais.jpg",
-    "Mimori Bells": "emoji: "⭐"",
-    "Illianora Esmee": "emoji: "⭐"",
-    "Timo Fidvi": "emoji: "⭐"",
-    "Hilmy Roen": "emoji: "⭐"",
-    "Gide Manfred": "emoji: "⭐""
-    "Milye Fau": "emoji: "⭐""
-
+    "Wyfin Loen": "⭐",
+    "Kito Orin": "⭐",
+    "Kyaan Mar": "⭐",
+    "Rowan Shourei": "⭐",
+    "Izan Torres": "⭐",
+    "Kaleo Heirs": "⭐",
+    "Riley Allise": "⭐",
+    "Sakura Blossom": "⭐",
+    "Kaeru Moe": "⭐",
+    "Vivien Lilah": "⭐",
+    "Hagia Latesha": "⭐",
+    "Cecily Lou": "⭐",
+    "Nuuha Tan": "⭐",
+    "Ishara Kye": "⭐",
+    "Cajon Kaz": "⭐",
+    "Noam Frage": "⭐",
+    "Gracheon Rainey": "⭐",
+    "Cathia Eve": "⭐",
+    "Elegi Esok": "⭐",
+    "Kasai Rauf": "⭐",
+    "San Helios": "⭐",
+    "Milan Agape": "⭐",
+    "Laudre Sienta": "⭐",
+    "Ame Faire": "⭐",
+    "Ruis Fjoer": "⭐",
+    "Eleven Gray": "⭐",
+    "Rin Isse": "⭐",
+    "Eurla Tisfa": "⭐",
+    "Mikael Fortner": "⭐",
+    "Gabriel Benjamin": "⭐",
+    "Meir Joe": "⭐",
+    "Monte Idriz": "⭐",
+    "Kyle Yuino": "⭐",
+    "Kato Ren": "⭐",
+    "Calde Hills": "⭐",
+    "Arion Smith": "⭐",
+    "Erika Fashreen": "⭐",
+    "Sabine Isle": "⭐",
+    "Thishar": "⭐",
+    "Mila Vesna": "⭐",
+    "J'eis Luc": "⭐",
+    "Amara Khiar": "⭐",
+    "Misty Jade": "⭐",
+    "Cinta Rianna": "⭐",
+    "Cassa Tanevi": "⭐",
+    "Kais Sinclair": "⭐",
+    "Mimori Bells": "⭐",
+    "Illianora Esmee": "⭐",
+    "Timo Fidvi": "⭐",
+    "Hilmy Roen": "⭐",
+    "Gide Manfred": "⭐",
+    "Milye Fau": "⭐"
 };
 
 const longMessage = name => `
@@ -214,7 +216,7 @@ function searchName() {
     const card = document.getElementById("card");
 
     if (data[input]) {
-        document.getElementById("photo").src = data[input];
+        document.getElementById("photo").innerText = data[input]; // tampilkan emoji
         document.getElementById("personName").innerText = input;
         document.getElementById("message").innerText = longMessage(input);
         card.style.display = "block";
