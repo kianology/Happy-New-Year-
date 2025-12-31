@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>New Year Wishes ✨</title>
+<style>
+    body {
+        font-family: 'Comic Sans MS', 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #ffe4ec, #e8f6ff);
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #555;
+    }
+
+    .container {
+        background: #fff;
+        width: 90%;
+        max-width: 700px;
+        border-radius: 25px;
+        padding: 30px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .decor {
+        position: absolute;
+        font-size: 24px;
+        opacity: 0.4;
+    }
+
+    .decor.star { top: 10px; left: 20px; }
+    .decor.heart { top: 20px; right: 30px; }
+    .decor.sparkle { bottom: 20px; left: 40px; }
+
+    h1 {
+        margin-bottom: 10px;
+        color: #ff7aa2;
+    }
+
+    input {
+        padding: 12px;
+        width: 80%;
+        border-radius: 20px;
+        border: 2px solid #ffd1e1;
+        outline: none;
+        font-size: 16px;
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .card {
+        display: none;
+        margin-top: 25px;
+        animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .photo {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 5px solid #ffd1e1;
+        object-fit: cover;
+        margin-bottom: 15px;
+    }
+
+    .postcard {
+        background: #fff5f9;
+        border-radius: 20px;
+        padding: 20px;
+        margin-top: 15px;
+    }
+
+    .postcard h2 {
+        color: #ff7aa2;
+        margin-bottom: 10px;
+    }
+
+    .postcard p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    footer {
+        margin-top: 20px;
+        font-size: 12px;
+        opacity: 0.6;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="decor star">⭐</div>
+    <div class="decor heart">💖</div>
+    <div class="decor sparkle">✨</div>
+
+    <h1>New Year Wishes ✨</h1>
+    <p>Type your name to find your postcard</p>
+
+    <input type="text" id="nameInput" placeholder="Enter your name..." oninput="searchName()">
+
+    <div class="card" id="card">
+        <img id="photo" class="photo" src="" alt="Photo">
+        <div class="postcard">
+            <h2 id="personName"></h2>
+            <p id="message"></p>
+        </div>
+    </div>
+
+    <div style="margin-top:18px;">
+    <button onclick="toggleMusic()" style="
+        padding:10px 18px;
+        border-radius:22px;
+        border:none;
+        background:#ffd1e1;
+        color:#555;
+        cursor:pointer;
+        font-size:14px;
+        box-shadow:0 6px 12px rgba(0,0,0,0.1);
+    ">
+        🎵 Play / Pause Music
+    </button>
+</div>
+
+<audio id="bgm" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+    <footer>Made with warmth and gentle thoughts, Daamir Khale 🌸</footer>
+</div>
+
+<script>
+const data = {
+    "Wyfin Loen": "emoji: "⭐"",
+    "Kito Orin": "emoji: "⭐"",
+    "Kyaan Mar": "emoji: "⭐"",
+    "Rowan Shourei": "emoji: "⭐"",
+    "Izan Torres": "emoji: "⭐"",
+    "Kaleo Heirs": "emoji: "⭐"",
+    "Riley Allise": "emoji: "⭐"",
+    "Sakura Blossom": "emoji: "⭐"",
+    "Kaeru Moe": "emoji: "⭐"",
+    "Vivien Lilah": "emoji: "⭐"",
+    "Hagia Latesha": "pemoji: "⭐"",
+    "Cecily Lou": "emoji: "⭐"",
+    "Nuuha Tan": "emoji: "⭐"",
+    "Ishara Kye": "emoji: "⭐"g",
+    "Cajon Kaz": "emoji: "⭐"",
+    "Noam Frage": "emoji: "⭐"",
+    "Gracheon Rainey": "emoji: "⭐"",
+    "Cathia Eve": "emoji: "⭐"",
+    "Elegi Esok": "emoji: "⭐"",
+    "Kasai Rauf": "emoji: "⭐"",
+    "San Helios": "emoji: "⭐"",
+    "Milan Agape": "emoji: "⭐"",
+    "Laudre Sienta": "emoji: "⭐"",
+    "Ame Faire": "emoji: "⭐"",
+    "Ruis Fjoer": "emoji: "⭐"",
+    "Eleven Gray": "emoji: "⭐"",
+    "Rin Isse": "emoji: "⭐"",
+    "Eurla Tisfa": "emoji: "⭐"",
+    "Mikael Fortner": "emoji: "⭐"",
+    "Gabriel Benjamin": "emoji: "⭐"",
+    "Meir Joe": "emoji: "⭐"",
+    "Monte Idriz": "emoji: "⭐"",
+    "Kyle Yuino": "emoji: "⭐"",
+    "Kato Ren": "emoji: "⭐"",
+    "Calde Hills": "emoji: "⭐"",
+    "Arion Smith": "emoji: "⭐"",
+    "Erika Fashreen": "emoji: "⭐"",
+    "Sabine Isle": "emoji: "⭐"",
+    "Thishar": "emoji: "⭐"",
+    "Mila Vesna": "emoji: "⭐"",
+    "J'eis Luc": "emoji: "⭐"",
+    "Amara Khiar": "emoji: "⭐"",
+    "Misty Jade": "emoji: "⭐"",
+    "Cinta Rianna": "emoji: "⭐"",
+    "Cassa Tanevi": "emoji: "⭐"g",
+    "Kais Sinclair": "photos/kais.jpg",
+    "Mimori Bells": "emoji: "⭐"",
+    "Illianora Esmee": "emoji: "⭐"",
+    "Timo Fidvi": "emoji: "⭐"",
+    "Hilmy Roen": "emoji: "⭐"",
+    "Gide Manfred": "emoji: "⭐""
+    "Milye Fau": "emoji: "⭐""
+
+};
+
+const longMessage = name => `
+As the New Year gently begins, this message exists to acknowledge something truly meaningful — your presence.
+
+Another year has passed, filled with moments both quiet and unforgettable, and within all of it, your existence has added warmth in ways that may not always be spoken aloud. The world becomes a little softer, a little brighter, simply because you are part of it.
+
+May this New Year bring you calm mornings, kind thoughts, small joys that linger, and strength for whatever lies ahead. May you continue to grow at your own pace, dream without pressure, and find comfort in knowing that your presence matters — more than you might ever realize.
+
+This wish is not about expectations or destinations. It is simply a gentle reminder that you are valued, appreciated, and sincerely wished well as a new chapter begins.
+
+Happy New Year ✨
+`;
+
+function searchName() {
+    const input = document.getElementById("nameInput").value.trim();
+    const card = document.getElementById("card");
+
+    if (data[input]) {
+        document.getElementById("photo").src = data[input];
+        document.getElementById("personName").innerText = input;
+        document.getElementById("message").innerText = longMessage(input);
+        card.style.display = "block";
+    } else {
+        card.style.display = "none";
+    }
+}
+
+function toggleMusic() {
+    const music = document.getElementById("bgm");
+    if (music.paused) {
+        music.play();
+    } else {
+        music.pause();
+    }
+}
+</script>
+
+</body>
+</html>
