@@ -134,10 +134,11 @@
         </div>
     </div>
 
-    <button onclick="toggleMusic()">🎵 Play / Pause Music</button>
+    <button id="musicBtn">🎵 Play Music</button>
 
     <audio id="bgm" loop>
         <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
     </audio>
 
     <footer>Made with warmth and gentle thoughts, Daamir Khale 🌸</footer>
@@ -225,14 +226,23 @@ function searchName() {
     }
 }
 
-function toggleMusic() {
-    const music = document.getElementById("bgm");
+// Tombol musik dengan handling autoplay
+const musicBtn = document.getElementById("musicBtn");
+const music = document.getElementById("bgm");
+
+musicBtn.addEventListener("click", () => {
     if (music.paused) {
-        music.play();
+        music.play().then(() => {
+            musicBtn.innerText = "🎵 Pause Music";
+        }).catch(err => {
+            alert("Klik tombol ini lagi untuk memulai musik.");
+            console.log(err);
+        });
     } else {
         music.pause();
+        musicBtn.innerText = "🎵 Play Music";
     }
-}
+});
 </script>
 
 </body>
